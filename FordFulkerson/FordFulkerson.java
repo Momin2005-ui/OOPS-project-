@@ -128,8 +128,7 @@ public class FordFulkerson {
     public static void main(String[] args) {
         try {
             String store=System.getProperty("user.dir");
-            System.out.println(store+"\\OOPS-project-\\FordFulkerson\\Chicago.tntp");
-            String inputFileName =store+"\\OOPS-project-\\FordFulkerson\\Chicago.tntp";
+            String inputFileName =store+"\\OOPSproject\\FordFulkerson\\Chicago.tntp";
             System.out.println(inputFileName);
             int V = getNumberOfNodes(inputFileName); 
             if(V==-1) {
@@ -146,7 +145,7 @@ public class FordFulkerson {
             long endTime = System.currentTimeMillis();
             long duration = endTime - startTime;
             System.out.println("Execution time in milliseconds: " + duration);
-            String outputFileName = store+"\\OOPS-project-\\FordFulkerson\\output.txt";
+            String outputFileName = store+"\\OOPSproject\\FordFulkerson\\output.txt";
             ff.writeOutputToFile(outputFileName, maxFlow);
 
             System.out. println("The maximum flow has been calculated and written to " + outputFileName);

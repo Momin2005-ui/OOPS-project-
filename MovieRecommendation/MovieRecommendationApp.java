@@ -21,8 +21,8 @@ public class MovieRecommendationApp {
         graph = new BipartiteGraph();
         movieNames = new HashMap<>();
         String store=System.getProperty("user.dir");
-        initializeDataFromFile(store+"\\OOPS-project-\\MovieRecommendation\\javaproject.txt");
-        initializeMovieNames(store+"\\OOPS-project-\\MovieRecommendation\\movies.csv");
+        initializeDataFromFile(store+"\\OOPSproject\\MovieRecommendation\\javaproject.txt");
+        initializeMovieNames(store+"\\OOPSproject\\MovieRecommendation\\movies.csv");
         initializeGUI();
     }
 
