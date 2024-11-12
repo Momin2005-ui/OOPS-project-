@@ -1,5 +1,3 @@
-package mohan;
-
 import java.io.*;
 import java.util.*;
 
@@ -14,19 +12,16 @@ public class FordFulkerson {
     }
     
     public static int getNumberOfNodes(String filePath) {
-        int numberOfNodes = -1; // Default to -1 in case the line isn't found
+        int numberOfNodes = -1; 
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
-            System.out.println("Inside line declare");
             while ((line = br.readLine()) != null) {
-            	 System.out.println("Inside while"+line);
-                // Check if the line contains "<NUMBER OF NODES>"
+            	System.out.println("Inside while"+line);
                 if (line.contains("<NUMBER OF NODES>")) {
-                	System.out.println("Inside number of nodes");
                     String[] parts = line.split(">");
                     if (parts.length > 1) {
-                        String numberString = parts[1].trim(); // Get the part after ">"
-                        numberOfNodes = Integer.parseInt(numberString); // Convert to integer
+                        String numberString = parts[1].trim(); 
+                        numberOfNodes = Integer.parseInt(numberString); 
                         break;
                     }
                 }
@@ -57,7 +52,6 @@ public class FordFulkerson {
 	                int v = Integer.parseInt(parts[1]);
 	              
 	                int capacity = (int) Float.parseFloat(parts[2]);
-//	                System.out.println("start,"+u+"end"+v);
 	                graph[u][v] = capacity;
 	                
 	                System.out.println("Added edge: " + u + " -> " + v + " with capacity: " + capacity);
@@ -123,19 +117,20 @@ public class FordFulkerson {
     }
 
     // Write the maximum flow result to an output file
-    public void writeOutputToFile(String fileName, int maxFlow,String city) throws IOException {
+    public void writeOutputToFile(String fileName, int maxFlow) throws IOException {
         System.out.println("Opening output file: " + fileName);
         BufferedWriter bw = new BufferedWriter(new FileWriter(fileName));
-        bw.write("The maximum number of cars that can travel from first node to last node(based on number)in the city of "+city+" is: " + maxFlow);
+        bw.write("The maximum number of cars that can travel from first node to last node(based on number)in the city of Chicago is"+" "+ maxFlow);
         bw.close();
         System.out.println("Output file " + fileName + " closed.");
     }
 
     public static void main(String[] args) {
         try {
-            String inputFileName = "E:\\College\\Chicago.tntp";
+            String store=System.getProperty("user.dir");
+            System.out.println(store+"\\OOPS-project-\\FordFulkerson\\Chicago.tntp");
+            String inputFileName =store+"\\OOPS-project-\\FordFulkerson\\Chicago.tntp";
             System.out.println(inputFileName);
-            String cityName = inputFileName.substring(11, inputFileName.length() - 5);
             int V = getNumberOfNodes(inputFileName); 
             if(V==-1) {
             	System.out.println("THe file either has differnet input format or does not have number of nodes specified");
@@ -144,17 +139,17 @@ public class FordFulkerson {
             FordFulkerson ff = new FordFulkerson(V+1);
             ff.loadGraphFromFile(inputFileName);
 
-            int source = 1; // Example source
-            int sink = V - 1; // Example sink
+            int source = 1;
+            int sink = V - 1; 
             long startTime = System.currentTimeMillis();
             int maxFlow = ff.fordFulkerson(source, sink);
             long endTime = System.currentTimeMillis();
             long duration = endTime - startTime;
             System.out.println("Execution time in milliseconds: " + duration);
-            String outputFileName = "E:\\College\\output.txt";
-            ff.writeOutputToFile(outputFileName, maxFlow,cityName);
+            String outputFileName = store+"\\OOPS-project-\\FordFulkerson\\output.txt";
+            ff.writeOutputToFile(outputFileName, maxFlow);
 
-            System.out.println("The maximum flow has been calculated and written to " + outputFileName);
+            System.out. println("The maximum flow has been calculated and written to " + outputFileName);
 
         } catch (IOException e) {
             System.err.println("Error reading or writing file: " + e.getMessage());

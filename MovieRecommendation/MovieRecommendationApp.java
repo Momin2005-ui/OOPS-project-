@@ -20,8 +20,9 @@ public class MovieRecommendationApp {
     public MovieRecommendationApp() {
         graph = new BipartiteGraph();
         movieNames = new HashMap<>();
-        initializeDataFromFile("C:\\Users\\Momin\\OneDrive\\Documents\\javaproject.txt");
-        initializeMovieNames("E:\\ml-latest-small\\movies.csv");
+        String store=System.getProperty("user.dir");
+        initializeDataFromFile(store+"\\OOPS-project-\\MovieRecommendation\\javaproject.txt");
+        initializeMovieNames(store+"\\OOPS-project-\\MovieRecommendation\\movies.csv");
         initializeGUI();
     }
 
